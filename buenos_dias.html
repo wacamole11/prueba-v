@@ -1,0 +1,179 @@
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buenos Días</title>
+  <link rel="stylesheet" href="buenos_dias.css">
+</head>
+<body>
+  <!-- Contenedor principal que simula una terminal -->
+  <div class="terminal-container">
+    <!-- Barra superior de la terminal -->
+    <div class="terminal-header">
+      <!-- Botones de control de la terminal (cerrar, minimizar, maximizar) -->
+      <div class="terminal-buttons">
+        <div class="terminal-button close"></div>
+        <div class="terminal-button minimize"></div>
+        <div class="terminal-button maximize"></div>
+      </div>
+      <!-- Título de la terminal mostrando usuario y directorio -->
+      <div class="terminal-title">princesa@princesa: ~/mensajes</div>
+    </div>
+    <div class="terminal-content">
+      <!-- Contenedor para los textos dinámicos (comandos y respuestas) -->
+      <div id="terminal-output"></div>
+      
+      <!-- Mensaje 1 -->
+      <!-- Primer mensaje con saludo inicial -->
+      <div class="terminal-line" id="message1-container">
+        <!-- Prompt de la terminal con usuario, host y directorio -->
+        <span class="prompt">
+          <span class="user">princesa</span>@<span class="host">princesa</span>:<span class="directory">~/mensajes</span>$
+        </span>
+        <!-- Comando que simula mostrar el mensaje -->
+        <span class="command">echo "¡Buenos días! ☀️ ¿Cómo amaneciste hoy?" | lolcat</span>
+        <!-- Mensaje con efecto de escritura y texto arcoíris -->
+        <div class="message typing-effect rainbow-text" id="message1">
+          ¡Buenos días! <span class="sun">☀️</span> ¿Cómo amaneciste hoy?
+        </div>
+        <!-- Opciones de respuesta para el primer mensaje -->
+        <div class="options" id="options-message1">
+          <div class="option" style="--index: 1" onclick="selectOption(this, 'message1-container', 'respuesta1-1')">echo "Amanecí con mucha energía"</div>
+          <div class="option" style="--index: 2" onclick="selectOption(this, 'message1-container', 'respuesta1-2')">echo "Un poco cansada pero bien"</div>
+          <div class="option" style="--index: 3" onclick="selectOption(this, 'message1-container', 'respuesta1-3')">echo "Con ganas de verte"</div>
+        </div>
+        <!-- Respuestas ocultas para cada opción del mensaje 1 -->
+        <div class="message typing-effect hidden" id="respuesta1-1">
+          <span class="prompt">princesa@princesa:~/mensajes$</span> cat respuesta.txt
+          ¡Me alegra mucho que tengas tanta energía!
+           Aprovecha el día al máximo.
+        </div>
+        <div class="message typing-effect hidden" id="respuesta1-2">
+          <span class="prompt">princesa@princesa:~/mensajes$</span> cat respuesta.txt<br>
+          No te preocupes, tómate el día con calma.<br>
+          Lo importante es que estés bien.
+        </div>
+        <div class="message typing-effect hidden" id="respuesta1-3">
+          <span class="prompt">princesa@princesa:~/mensajes$</span> cat respuesta.txt
+          Yo también tengo muchas ganas 
+          de verte, princesa.
+        </div>
+        <button class="next-button hidden" onclick="showNextMessage('message1-container')">sudo continuar</button>
+      </div>
+  
+      <!-- Mensaje 2 -->
+      <div class="terminal-line hidden" id="message2-container">
+        <span class="prompt">
+          <span class="user">princesa</span>@<span class="host">princesa</span>:<span class="directory">~/mensajes</span>$
+        </span>
+        <span class="command">fortune | cowsay | lolcat</span>
+        <div class="message typing-effect rainbow-text" id="message2">
+          Espero que tengas un día maravilloso lleno de alegría y sonrisas.
+        </div>
+        <div class="options" id="options-message2">
+          <div class="option" style="--index: 1" onclick="selectOption(this, 'message2-container', 'respuesta2-1')">echo "Gracias por tus buenos deseos"</div>
+          <div class="option" style="--index: 2" onclick="selectOption(this, 'message2-container', 'respuesta2-2')">echo "Tú haces mis días más felices"</div>
+        </div>
+        <div class="message typing-effect hidden" id="respuesta2-1">
+          <span class="prompt">princesa@princesa:~/mensajes$</span> cat respuesta.txt
+          ¡Qué lindo! Me alegra saber que mis buenos deseos te hacen bien.
+        </div>
+        <div class="message typing-effect hidden" id="respuesta2-2">
+          <span class="prompt">princesa@princesa:~/mensajes$</span> cat respuesta.txt
+          Tú también haces mis días más felices, princesa.
+        </div>
+        <button class="next-button hidden" onclick="showNextMessage('message2-container')">sudo continuar</button>
+      </div>
+  
+      <!-- Mensaje 3 -->
+      <div class="terminal-line hidden" id="message3-container">
+        <!-- Prompt de la terminal -->
+        <span class="prompt">
+          <span class="user">princesa</span>@<span class="host">princesa</span>:<span class="directory">~/mensajes</span>$
+        </span>
+        <!-- Comando a emular -->
+        <span class="command">echo "Este es el tercer mensaje"</span>
+        <!-- Mensaje con efecto de escritura, texto arcoíris y datos de neofetch románticos -->
+        <div class="message typing-effect rainbow-text" id="message3">
+          Este es el tercer mensaje, seguimos en la conversación.<br>
+          <pre class="neofetch-heart">
+
+                 .:::.   .:::.    [ROMANCE INFO]
+                :::::::.:::::::    Nombre: princesa
+                :::::::::::::::    OS: AmorOS
+                ':::::::::::::'    Kernel: ❤ 4.20
+                  ':::::::::'      Uptime: Eternamente enamorada
+                    ':::::'        Packages: Infinitos sueños
+                      ':'                                        
+          </pre>
+        </div>
+        <div class="message input-section">
+          <input type="text" class="message-input" placeholder="Déjame un mensaje">
+          <button class="send-button" onclick="sendMessage()">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+<script>
+    let selectedOption = null; // Variable para rastrear la opción seleccionada
+
+    // Inicialización cuando se carga el documento
+    document.addEventListener('DOMContentLoaded', function() {
+        // Muestra el primer mensaje
+        document.getElementById('message1-container').classList.remove('hidden');
+    });
+
+    // Función para mostrar elementos con efecto de escritura (simulada)
+    function showWithTypingEffect(element, container) {
+        container.appendChild(element);
+    }
+
+    // Función para manejar la selección de opciones
+    function selectOption(element, containerId, respuestaId) {
+        // Deselecciona la opción previamente seleccionada
+        if (selectedOption) {
+            selectedOption.classList.remove('selected');
+        }
+
+        // Marca la opción actual como seleccionada
+        element.classList.add('selected');
+        selectedOption = element;
+
+        const container = document.getElementById(containerId);
+        const respuesta = document.getElementById(respuestaId);
+        const nextButton = container.querySelector('.next-button');
+
+        // Mostrar el comando ejecutado
+        const commandLine = document.createElement('div');
+        commandLine.className = 'terminal-line';
+        commandLine.innerHTML = `<span class="prompt">princesa@princesa:~/mensajes$</span> <span class="command">${element.textContent}</span>`;
+
+        // Mostrar la respuesta
+        respuesta.classList.remove('hidden');
+
+        // Mostrar el botón de continuar
+        nextButton.classList.remove('hidden');
+
+        // Agregar el comando y la respuesta al contenedor
+        const terminalContent = document.querySelector('.terminal-content');
+        showWithTypingEffect(commandLine, terminalContent);
+        showWithTypingEffect(respuesta, terminalContent);
+    }
+
+    // Función para mostrar el siguiente mensaje
+    function showNextMessage(currentContainerId) {
+        const currentContainer = document.getElementById(currentContainerId);
+        const nextContainer = currentContainer.nextElementSibling;
+        
+        if (nextContainer) {
+            // Ocultar el contenedor actual y mostrar el siguiente
+            currentContainer.classList.add('hidden');
+            nextContainer.classList.remove('hidden');
+        } else {
+            alert('¡Felicidades! Has llegado al final de la conversación.');
+        }
+    }
+</script>

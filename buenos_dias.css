@@ -1,0 +1,218 @@
+body {
+    font-family: 'Courier New', monospace;
+    background-color: #1e1e1e; /* Fondo casi negro */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.terminal-container {
+    width: 90vw;    /* 90% del ancho de la ventana */
+    height: 90vh;   /* 90% de la altura de la ventana */
+    background-color: #282c34; /* Color de fondo */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    overflow: hidden;   /* Evita que desborde el contenedor principal */
+}
+
+.terminal-header {
+    background-color: #3e4451; /* Encabezado más oscuro */
+    color: #abb2bf;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #5c6370;
+}
+
+.terminal-buttons {
+    display: flex;
+}
+
+.terminal-button {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.close {
+    background-color: #e06c75;
+}
+
+.minimize {
+    background-color: #e5c07b;
+}
+
+.maximize {
+    background-color: #98c379;
+}
+
+.terminal-title {
+    font-size: 14px;
+}
+
+.terminal-content {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    overflow: auto;   /* Agrega barras de navegación horizontales y verticales en caso de sobrepasar */
+    color: #abb2bf; /* Color de texto principal */
+}
+
+.terminal-line {
+    margin-bottom: 10px;
+    font-size: 14px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.prompt {
+    color: #61afef; /* Azul claro para el prompt */
+}
+
+.user {
+    color: #c678dd; /* Morado para el usuario */
+}
+
+.host {
+    color: #e06c75; /* Rojo para el host */
+}
+
+.directory {
+    color: #98c379; /* Verde para el directorio */
+}
+
+.command {
+    color: #abb2bf; /* Gris claro para el comando */
+}
+
+.message {
+    margin-top: 5px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap; /* Respeta los saltos de línea */
+}
+
+.options {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.option {
+    background-color: #3e4451; /* Opciones más oscuras */
+    border: 1px solid #5c6370;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #abb2bf; /* Texto de opción más claro */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.option:hover {
+    background-color: #5c6370; /* Hover más oscuro */
+}
+
+.next-button {
+    background-color: #98c379; /* Verde para el botón */
+    color: #282c34;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin-top: 10px;
+}
+
+.next-button:hover {
+    background-color: #82b46a;
+}
+
+.hidden {
+    display: none;
+}
+
+.typing-effect {
+    overflow: hidden;
+    white-space: nowrap;
+    animation: typing 2s steps(40, end);
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+.rainbow-text {
+    background: linear-gradient(to right, #e06c75, #e5c07b, #98c379, #61afef, #c678dd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.sun {
+    display: inline-block;
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.romance-container {
+    display: flex;
+    gap: 20px; /* Espacio entre el arte y los datos */
+    align-items: flex-start;
+}
+
+.romance-info {
+    font-family: 'Courier New', monospace;
+}
+
+.message.input-section {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  background-color: #3e4451;
+  border-radius: 8px;
+}
+
+.message.input-section .message-input {
+  flex: 1;
+  max-width: 200px; /* Limita el ancho para que no sea tan largo */
+  padding: 4px 8px;
+  border: 2px solid #5c6370; /* Borde más grueso (original) */
+  border-radius: 4px;
+  background-color: #282c34;
+  color: #abb2bf;
+  font-family: 'Courier New', monospace;
+  height: 20px; /* Altura aun más corta */
+  font-size: 12px;
+}
+
+.message.input-section .send-button {
+  padding: 6px 12px;
+  background-color: #98c379;
+  border: none;
+  border-radius: 4px;
+  color: #282c34;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.message.input-section .send-button:hover {
+  background-color: #82b46a;
+}
+
